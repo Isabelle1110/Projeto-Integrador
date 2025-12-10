@@ -1,188 +1,331 @@
 
-<!-- file:///C:/xampp/htdocs/Projeto-Integrador/index.html-->>
+body {
+    margin: 0;
+    padding: 0;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Cantarell", sans-serif;
+}
+
+header {
+    width: 100%;
+    height: 520px;
+    background-image: url("imagem/Lançamento\ de\ Produto\ de\ Alta\ Tecnologia.jpeg");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.header-overlay {
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+}
+
+.header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px ;
+    padding-top: 0;
+    color: white;
+}
+
+#logo{
+     width: 280px;
+    height: 200px;
+}
+
+nav a {
+    color: white;
+    margin-left: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    padding-right: 20px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+#frase{
+    
+    text-align: center;
+    color: #F3F3F3;
+    font-size: 30px;
+}
+main{
+    background-color: #F3F3F3;
+}
+
+.container {
+    display: flex;
+    gap: 40px;
+    max-width: 1200px;
+    margin: auto;
+    align-items: flex-start;   
+    padding: 60px;
+    }
+
+   /*não consegui deixar igual no design*/
+    .images-sobre {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    width: 55%;
+}
+
+   .images-sobre img {
+    width: 100%;
+    height: 260px; 
+    object-fit: cover;
+    border-radius: 6px;
+}
+    
+    .Texto {
+        width: 45%;
+    }
+
+    .Texto h2 {
+        letter-spacing: 3px;
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .Texto p {
+        line-height: 1.6;
+        font-size: 15px;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    @media (max-width: 850px) {
+        #sobre {
+            flex-direction: column;
+        }
+
+        .images-sobre, .text {
+            width: 100%;
+        }
+
+        .images-sobre img {
+            height: 180px;
+        }
+    }
 
 
-<!DOCTYPE html>
-<html lang="en">
+.especialidades {
+    padding: 40px 0;
+    text-align: center;
+    background: linear-gradient(to right, #031E40, #0d61a5);
+    color: white;
+}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luciano Figueiredo - Cerimonial em Eventos </title>
-    <link rel="stylesheet" href="style.css">
-</head>
+.especialidades h2 {
+    font-size: 22px;;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+}
 
-<body>
+.items {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
 
-    <nav id="cabecalho_inicio">
+.item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 190px;
+    text-align: center;
+}
 
-        <img src="img/Logo-Luciano.png" alt="Logo">
-        <a href="#inicio">INICIO</a>
-        <a href="#sobre">SOBRE</a>
-        <a href="#eventos">EVENTOS</a>
-        <a href="orçamento.html#body_orcamento">ORÇAMENTO</a>
+.icon {
+    width: 100px;
+    height: 100px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    
+}
+
+.icon img {
+    width: 240px;
+    height:150px;
+}
+#icon-text{
+    line-height: 1.6;
+        font-size: 15px;
+        color: #F3F3F3;        margin-bottom: 20px;
+}
+
+.section {
+    padding: 40px;
+    font-family: Arial, sans-serif;
+}
+
+.section h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.carousel-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.carousel {
+    display: flex;
+    gap: 25px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding-bottom: 10px;
+}
+
+.carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.card {
+    min-width: 320px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    overflow: hidden;
+    text-align: center;
+}
+
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.card p {
+    padding: 10px;
+    font-size: 14px;
+    color: #444;
+}
+
+/* Botões laterais */
+.arrow {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    background: white;
+    border-radius: 50%;
+    padding: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    cursor: pointer;
+    user-select: none;
+    font-size: 20px;
+}
+
+.left {
+    left: 0;
+}
+
+.right {
+    right: 0;
+}
+
+#button-section{
+     text-align: center; 
+}
+
+/* Botão central */
+.button-center {
+    margin-top: 35px;
+    background: #0389A6;
+    color: white;
+    padding: 12px 35px;
+    border-radius: 30px;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 16px;
+    display: inline-block;
+}
+
+footer{
+    background-color: #104B7B;
+    padding-bottom: 0;
+}
+
+.rodape {
+    padding: 40px 0;
+    text-align: center;
+    color: white;
+}
+
+#contato-a{
+    color: white;
+}
+.contatos {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    flex-wrap: wrap;
+    color: white;
+}
+
+.contato {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 190px;
+    text-align: center;
+}
+
+.icone {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #104B7B;
+}
+
+.icone img {
+    width: 50px;
+    height:50px;
+}
 
 
-        
-       
-     <a href="login.html" class="botao-login">ENTRAR</a>
+
+#orcamento {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    width: 100%;
+
+}
 
 
-    </nav>
+#orcamento a {
+    font-family: Arial, Helvetica, sans-serif;
+    display: inline-block;
+    text-align: center;
+    padding: 12px;
+    border-radius: 20px;
+    color: white;
+    width: 10%;
+    background-color: rgb(30, 40, 80);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.5s ease;
+    margin-left: 40px;
+}
 
-    <header>
-        <img src="img/Banner.png" alt="">
-    </header>
- 
-
-  <!--  <section id="inicio">
-        <div class="container_inicio">
-            <div class="assessoria">
-                <h2>Luciano Figueiredo - Assessoria de Cerimonial
-                    de Eventos </h2>
-                <p>Descubra um mundo de possibilidades para
-                    tornar seu evento verdadeiramente especial! Se
-                    você busca inovações, profissionalismo e uma
-                    experiência única, a Luciano Figueiredo -
-                    Assessoria de Cerimonial e Eventos, é a escolha
-                    ideal para transformar seu sonho em realidade.</p>
-
-            </div>       
-        </div>
-    </section>
-    -->
-
-    <section class="especialidades">
-        <h2>Especialidades</h2>
-        <div class="grid-especialidades">
-            <ul>
-                <li>Planejamento e Organização de Eventos Corporativos;</li>
-                <li>Cerimonias e Coordenação de eventos;</li>
-            </ul>
-            <ul>
-                <li>Congressos e Conferências;</li>
-                <li>Treinamentos e Workshops Empresarias;</li>
-            </ul>
-        </div>
-    </section>
-
-
-
-    <section id="sobre">
-        <div class="sobre">
-            <div class="img_sobre">
-                <img src="img/Sobre.jpg" alt="Banner da empresa Luciano Figueiredo">
-            </div>
-
-            <div class="txt_empresa">
-                <h2>Sobre</h2>
-
-                <p>
-                    A Luciano Figueiredo, uma empresa de assessoria de cerimonial em Brasília, é especialista em
-                    transformar
-                    eventos corporativos e empresariais em experiências memoráveis. Com mais de 10 anos de experiência,
-                    a
-                    Luciano oferece soluções completas e personalizadas, sempre com foco em excelência, sofisticação e
-                    organização.
-                </p>
-            </div>
-            <div class="img_txt">
-                <img src="img/LucianoFigueiredo.jpg" alt="Luciano Figueiredo">
-
-                <p>O fundador da empresa, Luciano Figueiredo, possui um currículo impecável, tendo atuado como
-                    cerimonialista no Tribunal Superior do Trabalho e, atualmente, ocupando o cargo de Assessor-Chefe
-                    Adjunto na Assessoria de Cerimonial da Procuradoria-Geral da República (PGR). Com uma vasta
-                    experiência
-                    em planejamento e organização de eventos de diferentes portes e formatos, incluindo seminários,
-                    solenidades de posse, visitas institucionais, eventos internacionais, lançamentos de livros, eventos
-                    híbridos e recepções de autoridades, a Luciano Figueiredo garante que seu evento seja um sucesso
-                    absoluto.</p>
-            </div>
-
-            <div class="funcao">
-                <h3>
-                    Luciano Figueiredo
-                </h3>
-
-                <p>
-                    Assessor-Chefe Adjunto na Assessoria de Cerimonial da Procuradoria-Geral da República
-                </p>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Eventos -->
-    <section id="eventos">
-
-        <nav id="cabecalho_eventos">
-
-            <h2 style="font-size: 2rem; color: aliceblue; text-align:left;">Eventos</h2>
-
-            
-        </nav>
-
-        <div class="container">
-            <div class="card">
-                <a href="evento_01.html"><img src="img/Conferência de Inovação Empresarial.jpeg"
-                        alt="Conferência"></a>
-                <h5>Conferência de Inovação Empresarial</h5>
-            </div>
-            <div class="card">
-                <a href="evento_02.html"><img src="img/Lançamento de Produto de Alta Tecnologia.jpeg"
-                        alt="Lançamento"></a>
-                <h5>Lançamento de Produto de Alta Tecnologia</h5>
-            </div>
-            <div class="card">
-                <a href="evento_03.html"><img src="img/Jantar de Networking Executivo.jpeg"
-                        alt="Networking"></a>
-                <h5>Jantar de Networking Executivo</h5>
-            </div>
-            <div class="card">
-                <a href="evento_04.html"><img src="img/Workshop de Capacitação para Executivos.jpeg"
-                        alt="Workshop"></a>
-                <h5>Workshop de Capacitação para Executivos</h5>
-            </div>
-            <div class="card">
-                <a href="evento_05.html"><img
-                        src="img/Workshop de Planejamento Estratégico Corporativo.jpeg" alt="Planejamento"></a>
-                <h5>Workshop de Planejamento Estratégico Corporativo</h5>
-            </div>
-            <div class="card">
-                <a href="evento_06.html"><img
-                        src="img/Encontro de Diretores de Operações e Eficiência Empresarial.jpeg" alt="Diretores"></a>
-                <h5>Encontro de Diretores de Operações e Eficiência Empresarial</h5>
-            </div>
-
-        </div>
-
-        <div id="orcamento">
-            <a href="orçamento.html">Quero um orçamento</a>
-        </div>
-
-    </section>
-
-    <footer class="rodape">
-
-        <div class="icon">
-            <img src="img/icon_email.png" alt="E-mail">
-            <p>contato@lucianofigueiredo.net.br</p>
-        </div>
-        <div class="icon">
-            <img src="img/icon_whats.png" alt="WhatsApp">
-            <a id="btt_whats" href="https://wa.me/556194126644" target="_blank">Fale conosco</a>
-        </div>
-        <div class="icon">
-            <a id="btt_insta" href="https://www.instagram.com/lucianofigs/" target="_blank"><img
-                    src="img/icon_instagram.png" alt="Instagram"></a>
-            <p>@lucianofigs</p>
-        </div>
-
-    </footer>
-    <footer class="footer_nomes">
-
-        <h3>Desenvolvido por : Isabelle, Lorrane, Mariana e Sarah  </h3>
-
-</body>
-
-</html>
+#orcamento a:hover {
+    transform: translateY(-1px);
+    box-shadow: 5px 8px 12px rgba(0, 0, 0, 0.4);
+}
