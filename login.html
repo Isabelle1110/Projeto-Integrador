@@ -1,68 +1,87 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login</title>
+    <title>Login</title>
     <link rel="stylesheet" href="login.css">
-   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
 <body>
-   <header class="top-bar">
+    <div class="container-login">
+        <header class="header-login">
+            <a href="index.html" class="back-link">
+                <span class="back-arrow">&#x2039;</span> ENTRAR
+            </a>
+        </header>
 
-    <a href="index.html" class="voltar">
-  <span class="back-arrow">&#x2039;</span>
-</a>
+        <main class="main-content">
+            <form id="formLogin" class="formulario">
+                <h3 class="titulo-login">Efetuar Login</h3>
+                
+                <div class="campo">
+                    <i class="fas fa-envelope icon"></i>
+                    <input type="email" id="email" placeholder="Email" required>
+                </div>
 
+                <div class="campo campo-senha">
+                    <i class="fas fa-lock icon"></i>
+                    <input type="password" id="senha" placeholder="Senha" required>
+                    <i class="fas fa-eye toggle-senha" onclick="togglePassword('senha')"></i>
+                </div>
 
-    <h1>Login</h1>
-  </header>
+                <button type="submit" class="botao">Entrar</button>
 
-  <form class="form-container" onsubmit="return validarLogin()">
-    <div class="input-group">
-
-      <span class="icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
-  <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"/>
-</svg>
-      </span>
-
-      <span class="icon"></span>
-
-      <input type="email" id="email" placeholder="Email" required>
+                <a href="recuperarsenha.html" class="link-recuperar">esqueci minha senha</a>
+            </form>
+        </main>
+        
+        <footer class="footer-bar"></footer>
     </div>
 
-    <div class="input-group">
+    <script>
+        function togglePassword(idCampo) {
+            const campo = document.getElementById(idCampo);
+            const icon = campo.nextElementSibling;
+            if (campo.type === 'password') {
+                campo.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                campo.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
 
-      <span class="icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M8 0a4 4 0 0 1 4 4v2.05a2.5 2.5 0 0 1 2 2.45v5a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 2 13.5v-5a2.5 2.5 0 0 1 2-2.45V4a4 4 0 0 1 4-4M4.5 7A1.5 1.5 0 0 0 3 8.5v5A1.5 1.5 0 0 0 4.5 15h7a1.5 1.5 0 0 0 1.5-1.5v-5A1.5 1.5 0 0 0 11.5 7zM8 1a3 3 0 0 0-3 3v2h6V4a3 3 0 0 0-3-3"/>
-</svg>
-      </span>
-   
+        function validarLogin(event) {
+            event.preventDefault();
 
-      <span class="icon"></span>
-      <input type="password" id="senha" placeholder="Senha" required>
-      <span class="toggle" onclick="toggleSenha('senha')"></span>
+            const email = document.getElementById('email').value;
+            const senha = document.getElementById('senha').value;
 
-    </div>
+            let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
 
-    <button type="submit" class="botao">Entrar</button>
+            const usuarioEncontrado = usuarios.find(user => user.email === email);
 
-   <p class="recuperarSenha-link">
+            if (!usuarioEncontrado) {
+                alert("Erro: E-mail não cadastrado. Cadastre-se primeiro!");
+                return false;
+            }
 
-      esqueceu a senha? <a href="recuperarsenha.html">Recuperar Senha</a>
+            if (usuarioEncontrado.senha === senha) {
+                alert(`Login bem-sucedido! Bem-vindo(a), ${usuarioEncontrado.nome || 'Cliente'}! Redirecionando para Orçamento...`);
+                
+                window.location.href = "orcamento.html"; 
+                
+                return true;
+            } else {
+                alert("Erro: Senha incorreta.");
+                return false;
+            }
+        }
 
-    </p>
-
-
-    <p class="cadastro-link">
-
-      Ainda não tem conta? <a href="cadastrar.html">Cadastre-se</a>
-
-    </p>
-  </form>
-
-  <script src="login.js"></script>
-
+        document.getElementById('formLogin').addEventListener('submit', validarLogin);
+    </script>
 </body>
 </html>
