@@ -1,62 +1,119 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recuperar senha</title>
+    <title>Recuperar Senha</title>
     <link rel="stylesheet" href="recuperarsenha.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+    <div class="container-recuperar">
+        <header class="header-login">
+            <a href="login.html" class="back-link">
+                <span class="back-arrow">&#x2039;</span> ENTRAR
+            </a>
+        </header>
 
-<header>
-    <!-- topo.html -->
-<div class="top-bar">
-  <a href="login.html" class="voltar">&#x276E;</a>
-  <span class="titulo">Entrar</span>
-</div>
+        <main class="main-content">
+            <form id="recuperarsenhaForm" class="formulario" onsubmit="return iniciarRecuperacao(event)">
+                <h3 class="titulo-recuperar">Recuperar senha</h3>
+                <p class="descricao-recuperar">Por favor, informe seu e-mail cadastrado para receber o link de redefinição da senha.</p>
+                
+                <div class="campo">
+                    <i class="fas fa-envelope icon"></i>
+                    <input type="email" id="email" placeholder="Email" required />
+                </div>
+                
+                <button type="submit" class="botao">Entrar</button>
+            </form>
 
-</header>
+            <form id="redefinirSenhaForm" class="formulario" style="display:none; flex-direction: column;" onsubmit="return redefinirSenha(event)">
+                <h3 class="titulo-recuperar">Nova Senha</h3>
+                <p class="descricao-recuperar">Digite sua nova senha. Você já confirmou seu e-mail.</p>
+                
+                <div class="campo">
+                    <i class="fas fa-lock icon"></i>
+                    <input type="password" id="novaSenha" placeholder="Nova Senha" required />
+                </div>
+                
+                <div class="campo">
+                    <i class="fas fa-lock icon"></i>
+                    <input type="password" id="confirmarNovaSenha" placeholder="Confirmar Nova Senha" required />
+                </div>
+                
+                <input type="hidden" id="emailRedefinicao" /> 
+                <button type="submit" class="botao">Redefinir</button>
+            </form>
+        </main>
+        
+        <footer class="footer-bar"></footer>
+    </div>
 
- 
+    <script>
+        // Função para simular o processo de recuperação e redefinição via localStorage
+        let emailParaRedefinicao = null; 
 
-    <div class="form-container">
-   
-      <h1>Recuperar senha</h1>
-    <p>Por favor, informe seu e-mail cadastrado para receber o link de redefinição da senha</p>
+        function iniciarRecuperacao(event) {
+            event.preventDefault(); 
+            
+            const email = document.getElementById('email').value;
+            let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+            const usuarioEncontrado = usuarios.find(user => user.email === email);
 
-    <form id="recuperarsenhaForm" action="recuperarsenha" method="POST" onsubmit="return validarEmail()">
-      <div class="input-group">
-        <input type="email" id="email" name="email" placeholder="Digite seu email" required />
-      </div>
-       <button type="button" onclick="confirmarEmail()">Enviar</button>
-    </form>
-  </div>
+            if (!usuarioEncontrado) {
+                alert("Erro: E-mail não cadastrado.");
+                return false;
+            }
 
-  <script>
-  function validarEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  }
+            alert(`E-mail encontrado! (Simulação: Foi enviado um token para ${email}). Clique OK para redefinir.`);
+            
+            emailParaRedefinicao = email;
+            
+            document.getElementById('recuperarsenhaForm').style.display = 'none';
+            
+            // Exibe o formulário de redefinição como 'flex' para o CSS funcionar
+            const redefinirForm = document.getElementById('redefinirSenhaForm');
+            redefinirForm.style.display = 'flex';
+            redefinirForm.style.gap = '15px'; // Adiciona o gap manualmente
+            
+            document.getElementById('emailRedefinicao').value = email;
+            
+            return false;
+        }
 
-  function confirmarEmail() {
-    const email = document.getElementById('email').value;
+        function redefinirSenha(event) {
+            event.preventDefault();
 
-    if (!validarEmail(email)) {
-      alert("Por favor, insira um e-mail válido.");
-      return false;
-    }
+            const novaSenha = document.getElementById('novaSenha').value;
+            const confirmarNovaSenha = document.getElementById('confirmarNovaSenha').value;
+            const email = document.getElementById('emailRedefinicao').value;
 
-    const mensagem = `Você confirma os seguintes dados?\nEmail: ${email}`;
-    
-    if (confirm(mensagem)) {
-      alert("Dado confirmado! Enviando...");
-      window.location.href = "login.html"; // Redireciona para a página de login após confirmação
-    } else {
-      alert("Confirmação cancelada.");
-    }
-  }
-</script>
+            if (novaSenha.length < 5) {
+                 alert("A senha deve ter pelo menos 5 caracteres.");
+                 return false;
+            }
+            
+            if (novaSenha !== confirmarNovaSenha) {
+                alert("Erro: As novas senhas não coincidem.");
+                return false;
+            }
 
+            let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+            
+            const index = usuarios.findIndex(user => user.email === email);
 
+            if (index !== -1) {
+                usuarios[index].senha = novaSenha;
+                localStorage.setItem('usuarios', JSON.stringify(usuarios));
+                
+                alert("Senha redefinida com sucesso! Você será redirecionado para o login.");
+                window.location.href = "login.html"; 
+            } else {
+                alert("Erro interno: Usuário não encontrado.");
+            }
+            return false;
+        }
+    </script>
 </body>
 </html>
