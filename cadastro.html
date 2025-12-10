@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="cadastro.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Cadastro</title>
+</head>
+<body>
+  <div class="container-cadastro">
+    <header class="header-cadastro">
+      <a href="login.html" class="back-link">
+        <span class="back-arrow">&#x2039;</span> CADASTRO
+      </a>
+    </header>
+
+    <main class="main-content">
+      <form id="formCadastro" class="formulario" action="cadastrar" method="POST">
+        
+        <div class="campo">
+          <i class="fas fa-user icon"></i>
+          <input type="text" id="nome" name="nome" placeholder="Nome Completo" required />
+        </div>
+
+        <div class="campo">
+          <i class="fas fa-envelope icon"></i>
+          <input type="email" id="email" name="email" placeholder="Email" required />
+        </div>
+
+        <div class="campo campo-senha">
+          <i class="fas fa-lock icon"></i>
+          <input type="password" id="senha" name="senha" placeholder="Senha" required />
+          <i class="fas fa-eye toggle-senha" onclick="togglePassword('senha')"></i>
+        </div>
+
+        <div class="campo campo-senha">
+          <i class="fas fa-lock icon"></i>
+          <input type="password" id="confirmar" name="confirmar" placeholder="Confirmar Senha" required />
+          <i class="fas fa-eye toggle-senha" onclick="togglePassword('confirmar')"></i>
+        </div>
+
+        <p class="aviso-termos">
+          Ao preencher o formulário acima você concorda com os nossos <a href="#">Termos de uso</a> e nossa <a href="#">Política de Privacidade</a>.
+        </p>
+
+        <button type="submit" class="botao">Cadastre-se</button>
+        
+        <a href="login.html" class="link-temConta">Já tenho conta</a>
+
+      </form>
+    </main>
+
+    <footer class="footer-bar"></footer>
+
+  </div>
+
+  <script>
+    function togglePassword(idCampo) {
+        const campo = document.getElementById(idCampo);
+        const icon = campo.nextElementSibling;
+        if (campo.type === 'password') {
+            campo.type = 'text';
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+        } else {
+            campo.type = 'password';
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+        }
+    }
+
+    document.getElementById('formCadastro').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const nome = document.getElementById('nome').value;
+        const email = document.getElementById('email').value;
+        const senha = document.getElementById('senha').value;
+        const confirmar = document.getElementById('confirmar').value;
+
+        if (senha !== confirmar) {
+            alert("Erro: As senhas não coincidem. Por favor, verifique.");
+            document.getElementById('senha').value = '';
+            document.getElementById('confirmar').value = '';
+            document.getElementById('senha').focus();
+            return;
+        }
+
+        let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+
+        const usuarioExistente = usuarios.find(user => user.email === email);
+        if (usuarioExistente) {
+            alert("Erro: Este e-mail já está cadastrado. Tente fazer login ou recuperar a senha.");
+            return;
+        }
+
+        const novoUsuario = { nome, email, senha };
+        usuarios.push(novoUsuario);
+        localStorage.setItem('usuarios', JSON.stringify(usuarios));
+
+        alert("Cadastro realizado com sucesso! Você já pode fazer login.");
+        
+        window.location.href = "login.html";
+    });
+  </script>
+</body>
+</html>
