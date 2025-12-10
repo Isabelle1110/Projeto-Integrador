@@ -1,113 +1,140 @@
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  background: #fff;
-  color: #333;
-  text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-.top-bar {
-
-  background-color: #172544; /* azul escuro */
-  color: white;
-  display: flex;
-  align-items: center;
-  padding: 15px 20px;
-  font-family: Arial, sans-serif;
-  font-size: 20px;
-  font-weight: bold;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.container-login {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    position: relative;
 }
 
-.top-bar h1 {
-  flex: 1;
-  text-align: center;
-  margin: 0;
-  font-size: 1.5rem;
+.header-login {
+    padding: 20px 0;
+    text-align: left;
+    margin: 0 20px;
+}
+
+.back-link {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
 }
 
 .back-arrow {
-  font-size: 2rem;
-  cursor: pointer;
-
-  color: #fff;
-
+    font-size: 30px;
+    margin-right: 5px;
+    line-height: 1;
 }
 
-.voltar {
-  color: white;
-  text-decoration: none;
-  font-size: 24px;
-  margin-right: 10px;
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 }
 
-
-
-.form-container {
-  max-width: 350px;
-  margin: 2rem auto;
-  background: #f7f7f7;
-  padding: 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.formulario {
+    background-color: #e6eef5; 
+    padding: 30px 25px 25px;
+    margin: 0 auto;
+    width: 90%;
+    max-width: 350px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); 
 }
 
-.input-group {
-  display: flex;
-  align-items: center;
-  margin: 10px 0;
-  background: #eee;
-  border-radius: 25px;
-  padding: 0.5rem 1rem;
-  position: relative;
+.titulo-login {
+    font-size: 1.2rem;
+    color: #333;
+    margin: 0 0 20px 0;
+    font-weight: 500;
 }
 
-.input-group .icon {
-  margin-right: 10px;
-  font-size: 1.2rem;
+.campo {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 30px;
+    padding: 0 15px;
+    height: 45px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
-.input-group input {
-  border: none;
-  background: transparent;
-  outline: none;
-  width: 100%;
-  padding: 0.5rem 0;
+.icon {
+    color: #777;
+    font-size: 16px;
+    margin-right: 10px;
 }
 
-.input-group .toggle {
-  position: absolute;
-  right: 10px;
-  cursor: pointer;
+.campo input {
+    width: 100%;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    font-size: 14px;
+    outline: none;
+    height: 100%;
+}
+
+.campo input::placeholder {
+    color: #aaa;
+}
+
+.campo-senha {
+    position: relative;
+}
+
+.toggle-senha {
+    color: #777;
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+    padding: 5px;
 }
 
 .botao {
-  width: 100%;
-  padding: 0.75rem;
-  background-color: #004A99;
-  color: white;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-  font-weight: bold;
-  margin-top: 1rem;
+    background-color: #17a2b8;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 12px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+    box-shadow: 0 4px 10px rgba(23, 162, 184, 0.4);
 }
 
 .botao:hover {
-  background-color: #003a78;
+    background-color: #138496;
 }
 
-.cadastro-link {
-  font-size: 0.9rem;
-  margin-top: 1rem;
+.link-recuperar {
+    font-size: 12px;
+    color: #8899a6;
+    text-decoration: none;
+    margin-top: 5px;
 }
 
-.botao-login {
-  background-color: white;
-  padding: 5px 10px;
-  border-radius: 4px;
-  color: black;
-  text-decoration: none;
-  font-weight: bold;
+.footer-bar {
+    background-color: #172647;
+    height: 60px;
+    width: 100%;
+    margin-top: auto;
 }
-
