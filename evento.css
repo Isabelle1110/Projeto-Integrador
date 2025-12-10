@@ -1,0 +1,58 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: #F4F4F4; 
+}
+
+
+.topo {
+    padding: 30px;
+}
+
+.voltar {
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.seta {
+    font-size: 36px;
+    line-height: 0;
+}
+
+
+.conteudo {
+    width: 80%;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+
+.imagem-evento {
+    width: 100%;
+    border-radius: 25px;
+    margin-bottom: 40px;
+}
+
+
+.texto {
+    border-left: 4px solid black;
+    padding-left: 15px;
+}
+
+.texto h2 {
+    font-size: 26px;
+    margin: 0 0 20px 0;
+}
+
+.texto p {
+    font-size: 17px;
+    color: #333;
+    line-height: 1.6;
+}
